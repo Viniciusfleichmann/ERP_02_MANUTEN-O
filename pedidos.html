@@ -18,7 +18,7 @@
         <div class="row">
             <nav class="col-md-2 sidebar">
                 <div class="logo">
-                    <h2 class="text-center text-white">Logo do Cliente</h2>
+                    <h2 class="text-center text-white"><img src="logo.jpeg" width="50%"></h2>
                 </div>
                 <div class="accordion" id="accordionExample">
                     <div class="card">
@@ -157,11 +157,11 @@
                         <form id="add-pedido">
                             <br><div class="form-floating">
                                 <textarea class="form-control" placeholder="Leave a comment here" id="nome_equip"></textarea>
-                                <label for="floatingTextarea2">Equipamento</label>
+                                <label for="floatingTextarea2"><p>Equipamento</p></label>
                             </div><br>
                             <div class="form-floating">
                                 <textarea class="form-control" placeholder="Leave a comment here" id="descricao_prob"></textarea>
-                                <label for="floatingTextarea2">Descrição do Problema</label>
+                                <label for="floatingTextarea2"><p>Descrição do Problema</p></label>
                             </div><br>
                             <label for="date">Inicio:</label>
                             <input id="datein" type="date"/>
@@ -169,23 +169,23 @@
                             <input id="dateter" type="date"/><br><br>
                             <div class="form-floating">
                                 <textarea class="form-control" placeholder="Leave a comment here" id="tecnico_res"></textarea>
-                                <label for="floatingTextarea2">Técnico Responsavel</label>
+                                <label for="floatingTextarea2"><p>Técnico Responsavel</p></label>
                             </div><br>
                             <div class="col-md">
                                 <div class="form-floating">
                                     <select class="form-select" id="floatingSelectGrid" aria-label="Float">
                                         <option selected></option>
-                                        <option value="1">Pessima Condição</option>
-                                        <option value="2">Em Reparos</option>
-                                        <option value="3">Otimo estado</option>
+                                        <option value="1"><p>Pessima Condição</p></option>
+                                        <option value="2"><p>Em Reparos</p></option>
+                                        <option value="3"><p>Otimo estado</p></option>
                                     </select><br>
-                                    <label for="floatingSelectGrid">Status do Equipamento</label>
+                                    <label for="floatingSelectGrid"><p>Status do Equipamento</p></label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Adicionar Equipamento</button>
+                            <button type="submit" class="btn btn-primary"><p>Adicionar Equipamento</p></button>
                         </form>
                         <table id="Equipamentos">
-                            <thead>
+                            <thead id="tabela">
                                 <tr>
                                     <th>Equipamento</th>
                                     <th>Descrição Problema</th>
