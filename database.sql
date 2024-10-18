@@ -7,7 +7,7 @@
 -- create table
 
 -- insert into
- create database empresa;
+ create database if not exists empresa;
  
 
 use empresa;

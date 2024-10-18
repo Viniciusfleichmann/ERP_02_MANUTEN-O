@@ -1,5 +1,5 @@
 :root{
-    --cor-principal:#000000;
+    --cor-principal:#ddd;
 
 }
 body {
@@ -55,7 +55,7 @@ p th {  /* Targets all paragraph elements */
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px #2980b9;
 }
 
 .form-section h2 {
@@ -72,7 +72,7 @@ p th {  /* Targets all paragraph elements */
 
 .form-section .btn-primary {
     background-color: #2980b9;
-    border-color: #000000;
+    border-color: #ddd;
 }
 
 .card-body ul li {
@@ -82,7 +82,7 @@ p th {  /* Targets all paragraph elements */
 
 .card-header,
 .card-body {
-    background-color: #710707;
+    background-color: #2980b9;
 }
 
 .accordion{
@@ -153,7 +153,7 @@ p th {  /* Targets all paragraph elements */
   
   /* Estilos para o cabeçalho da tabela */
   thead th {
-    background-color: #710707;
+    background-color:#2980b9;
     font-weight: bold;
     padding: 8px;
     text-align: left;
@@ -197,6 +197,6 @@ p th {  /* Targets all paragraph elements */
   }
 
   .tabela{
-    background-color: #710707;
+    background-color: #fff;
     
   }
