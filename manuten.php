@@ -1,3 +1,24 @@
+<?php
+include 'config.php';
+
+// Adiciona produto
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['equipamento']) && isset($_POST['id_equipamento'])) {
+    $name = $_POST['equipamento'];
+    $id_equipamento = $_POST['id_equipamento'];
+    $stmt = $pdo->prepare("INSERT INTO manutencoes (equipamento, id_equipamento) VALUES (?, ?)");
+    $stmt->execute([$name, $id_equipamento]);
+}
+if ($id_equipamento === false) {
+    // Handle invalid ID case
+    echo "ID inválido!";
+    exit;
+}
+
+// Lista categorias e produtos
+$categories = $pdo->query("SELECT * FROM categories")->fetchAll();
+$products = $pdo->query("SELECT products.*, categories.name as category_name FROM products JOIN categories ON products.category_id = categories.id")->fetchAll();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -5,7 +26,7 @@
     <!--NÃO ALTERAR-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Fornecedores</title>
+    <title>Manutenção de Equipamento</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="src/css/manuten.css">
     <!--NÃO ALTERAR-->
@@ -152,49 +173,37 @@
                 </div>
                 <!--NÃO ALTERAR-->
                 <!--ADICIONE OS CAMPOS ABAIXO-->
-                <Form id="formulario">
+                <Form id="formulario" method="POST">
                     <div class="box" id="box">
                         <form id="add-pedido">
                             <br><div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="nome_equip"></textarea>
-                                <label for="floatingTextarea2"><p>Equipamento</p></label>
+                                <textarea class="form-control" id="nome_equip"></textarea>
+                                <label for="floatingTextarea2"><p>Equipamento</p></label required>
                             </div><br>
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="descricao_prob"></textarea>
-                                <label for="floatingTextarea2"><p>Descrição do Problema</p></label>
+                                <textarea class="form-control"  id="descricao_prob"></textarea>
+                                <label for="floatingTextarea2"><p>Descrição do Problema</p></label required>
                             </div><br>
                             <label for="date">Inicio:</label>
-                            <input id="datein" type="date"/>
+                            <input id="datein" type="date" required/>
                             <label for="date">Termino:</label>
-                            <input id="dateter" type="date"/><br><br>
+                            <input id="dateter" type="date" required/><br><br>
                             <div class="form-floating">
                                 <textarea class="form-control" placeholder="Leave a comment here" id="tecnico_res"></textarea>
-                                <label for="floatingTextarea2"><p>Técnico Responsavel</p></label>
+                                <label for="floatingTextarea2"><p>Técnico Responsavel</p></label required>
                             </div><br>
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <select class="form-select" id="floatingSelectGrid" aria-label="Float">
-                                        <option selected></option>
-                                        <option value="1"><p>boa condição</p></option>
-                                        <option value="2"><p>necessita reparos</p></option>
-                                        <option value="3"><p>péssimo</p></option>
+                                    <select class="form-select" id="floatingSelectGrid" aria-label="Float" required>
+                                    <?php foreach ($manutencoes as $equipamento): ?>
+                                      <option value="<?= $manutencoes['status'] ?>"><?= $manutencoes['status'] ?></option>
+                                    <?php endforeach; ?>
                                     </select><br>
-                                    <label for="floatingSelectGrid"><p>Status do Equipamento</p></label>
+                                    <label for="floatingSelectGrid"><p>Status do Equipamento</p></label required>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary"><p>Adicionar Equipamento</p></button>
                         </form>
-                        <table id="Equipamentos">
-                            <thead id="tabela">
-                                <tr>
-                                    <th>Equipamento</th>
-                                    <th>Descrição Problema</th>
-                                    <th>Inicio</th>
-                                    <th>Termino</th>
-                                    <th>Técnico Responsavel</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
                             <tbody id="pedidos-list">
                                 <!-- Aqui serão adicionados os pedidos -->
                             </tbody>
@@ -213,7 +222,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <!--NÃO ALTERAR-->
     <!--ADICIONE O JS ABAIXO-->
-    <script src="./src/js/manuten.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="src/js/login.css"></script>
 </body>
 
 </html>
